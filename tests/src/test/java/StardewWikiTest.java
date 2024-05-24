@@ -13,6 +13,13 @@ import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestMethodOrder;
 
 import io.github.cdimascio.dotenv.Dotenv;
+import pages.FrequentChangesPage;
+import pages.LoggedInPage;
+import pages.LoggedOutPage;
+import pages.LoginPage;
+import pages.MainPage;
+import pages.PreferencesPage;
+import pages.SearchResultPage;
 
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;

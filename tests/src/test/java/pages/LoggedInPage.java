@@ -1,27 +1,27 @@
+package pages;
 import org.openqa.selenium.*;
 
-public class FrequentChangesPage extends PageBase {
-    private By firstHeadingLocator = By.id("firstHeading");
+public class LoggedInPage extends PageBase {
     private By loggedUserLinkLocator = By.xpath("//a[@href='/User:Danimodesti']");
+    private By logoutLinkLocator = By.xpath("//li[@id='pt-logout']//ancestor::a");
     private By preferencesLinkLocator = By.xpath("//a[@href=\"/Special:Preferences\"]");
 
-    public FrequentChangesPage(WebDriver driver) {
+    public LoggedInPage(WebDriver driver) {
         super(driver);
         waitAndReturnElement(bodyLocator);
     }
 
-    public String getMainTitle() {
-        WebElement firstHeading = waitAndReturnElement(firstHeadingLocator);
-        return firstHeading.getText();
-    }
-
-    public String getLoggedUser() {
+    public String getLoggedUserLink() {
         WebElement loggedUserLink = waitAndReturnElement(loggedUserLinkLocator);
         return loggedUserLink.getText();
     }
 
-
-    public PreferencesPage getUserPreferences() {
+    public LoggedOutPage logout() {
+        waitAndReturnElement(logoutLinkLocator).click();
+        return new LoggedOutPage(this.driver);
+    }
+    
+    public PreferencesPage goToUserPreferences() {
         waitAndReturnElement(preferencesLinkLocator).click();
         return new PreferencesPage(this.driver);
     }

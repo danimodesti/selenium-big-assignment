@@ -1,3 +1,4 @@
+package pages;
 import org.openqa.selenium.*;
 
 import java.util.HashMap;
