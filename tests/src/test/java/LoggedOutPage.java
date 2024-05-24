@@ -7,5 +7,4 @@ public class LoggedOutPage extends PageBase {
         super(driver);
         waitAndReturnElement(firstHeadingLocator);
     }
-
 }

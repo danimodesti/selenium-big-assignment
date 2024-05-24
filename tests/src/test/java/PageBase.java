@@ -7,6 +7,9 @@ public class PageBase {
 
     protected By bodyLocator = By.tagName("body");
     protected By footerLocator = By.tagName("footer");
+    
+    private By searchBarLocator = By.id("searchInput");
+    private By suggestionsLocator = By.className("mw-searchSuggest-link");
 
     public PageBase(WebDriver driver) {
         this.driver = driver;
@@ -18,8 +21,8 @@ public class PageBase {
         return this.driver.findElement(locator);
     }
 
-    public void clickBody() {
-        waitAndReturnElement(bodyLocator).click();
+    protected void waitForElements(By locator) {
+        this.wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
     }
 
     public String getBodyText() {
@@ -32,10 +35,21 @@ public class PageBase {
         return footer.getText();
     }
 
-    public void hold() {
-        try {
-            wait.until(ExpectedConditions.invisibilityOfElementLocated(bodyLocator));
-        } catch (TimeoutException e) {
-        }
+    public SearchResultPage search(String keys) {
+        WebElement searchBar = waitAndReturnElement(searchBarLocator);
+        searchBar.sendKeys(keys);
+        waitForElements(suggestionsLocator);
+        searchBar.sendKeys("\n");
+
+        return new SearchResultPage(this.driver);
+    }
+
+    public void goBack() {
+        driver.navigate().back();
+    }
+
+    public SearchResultPage clickLinkByText(String linkText) {
+        waitAndReturnElement(By.xpath("//a[contains(text(), '" + linkText + "')]")).click();
+        return new SearchResultPage(this.driver);
     }
 }

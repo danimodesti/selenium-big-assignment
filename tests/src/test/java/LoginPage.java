@@ -26,5 +26,4 @@ public class LoginPage extends PageBase {
                 
         return new LoggedInPage(this.driver);
     }
-
 }

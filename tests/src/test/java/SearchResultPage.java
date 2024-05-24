@@ -1,13 +1,15 @@
 import org.openqa.selenium.*;
 
 public class SearchResultPage extends PageBase {
+    private By bodyContentLocator = By.id("bodyContent");
+
     public SearchResultPage(WebDriver driver) {
         super(driver);
         waitAndReturnElement(bodyLocator);
     }
 
-    public void clickByText(String resultName) {
-        By locator = By.xpath("//div[@id='0']//span[contains(text(), \"" + resultName + "\")]//ancestor::a");
-        
+    public String getResultsText() {
+        WebElement bodyContent = waitAndReturnElement(bodyContentLocator);
+        return bodyContent.getText();
     }
 }

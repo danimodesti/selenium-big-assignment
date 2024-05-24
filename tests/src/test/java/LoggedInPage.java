@@ -20,7 +20,7 @@ public class LoggedInPage extends PageBase {
         return new LoggedOutPage(this.driver);
     }
     
-    public PreferencesPage getUserPreferences() {
+    public PreferencesPage goToUserPreferences() {
         waitAndReturnElement(preferencesLinkLocator).click();
         return new PreferencesPage(this.driver);
     }

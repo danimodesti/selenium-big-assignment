@@ -1,7 +1,7 @@
 import org.openqa.selenium.*;
 
 public class FrequentChangesPage extends PageBase {
-    private By firstHeadingLocator = By.xpath("//h1[@id='firstHeading']");
+    private By firstHeadingLocator = By.id("firstHeading");
     private By loggedUserLinkLocator = By.xpath("//a[@href='/User:Danimodesti']");
     private By preferencesLinkLocator = By.xpath("//a[@href=\"/Special:Preferences\"]");
 
@@ -15,7 +15,7 @@ public class FrequentChangesPage extends PageBase {
         return firstHeading.getText();
     }
 
-    public String getLoggedUserLink() {
+    public String getLoggedUser() {
         WebElement loggedUserLink = waitAndReturnElement(loggedUserLinkLocator);
         return loggedUserLink.getText();
     }

@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class PreferencesPage extends PageBase {
-    private By firstHeadingLocator = By.xpath("//h1[@id='firstHeading']");
-    private By realNameInputLocator = By.xpath("//input[@id='ooui-php-6']");
+    private By firstHeadingLocator = By.id("firstHeading");
+    private By realNameInputLocator = By.id("ooui-php-6");
     private String languageComboBoxId = "ooui-php-19";
     private By savePreferencesButtonLocator = By.xpath("//button//ancestor::span[@class='oo-ui-labelElement-label']");
     private By frequentChangesLinkLocator = By.xpath("//li[@id='n-recentchanges']//ancestor::a");
@@ -57,15 +57,11 @@ public class PreferencesPage extends PageBase {
 
     public void fillOutPreferencesForm(String realName, String language, String pronoun) {
         fillOutRealName(realName);
-
-        this.clickBody();
-
         fillOutLanguage(language);        
     }
 
-    public FrequentChangesPage checkFrequentChanges() {
+    public FrequentChangesPage goToFrequentChangesPage() {
         waitAndReturnElement(frequentChangesLinkLocator).click();
-
         return new FrequentChangesPage(this.driver);
     }
 }
